@@ -4,6 +4,12 @@ A small react app using typescript, react-query & tailwindcss.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Create a .env file and include the following env valriable
+
+```
+REACT_APP_CAT_API_KEY=your_api_key
+```
+
 ## Available Scripts
 
 ```
