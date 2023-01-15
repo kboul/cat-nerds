@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getCatImages } from "../api/cats";
-import { CenteredText } from "../components";
-import Card from "../components/Card";
+import { getCatImages } from "../../api/cats";
+import { Card, CenteredText } from "../../components";
 
 export default function CatImages() {
   const {
