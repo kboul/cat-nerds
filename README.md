@@ -1,4 +1,4 @@
-# Card Nerds App
+# Cat Nerds App
 
 A small react app using typescript, react-query & tailwindcss.
 
@@ -31,7 +31,7 @@ The page will reload if you make edits.
 You will also see any lint errors in the console.
 
 ```
-npm test
+npm test or yarn test
 ```
 
 Launches the test runner in the interactive watch mode.
