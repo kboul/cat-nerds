@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 import { Outlet } from "react-router-dom";
 
-import { getCatImages } from "../../api/cats";
+import { getCatImages } from "../../api";
 import { Button, CatImageCard, CenteredText } from "../../components";
 
 export default function CatImages() {

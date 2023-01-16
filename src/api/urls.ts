@@ -1,5 +1,9 @@
-const baseUrl = "https://api.thecatapi.com/v1/images";
+const baseUrl = "https://api.thecatapi.com/v1";
 
-const searchUrl = `${baseUrl}/search`;
+const catImagesUrl = `${baseUrl}/images/search`;
 
-export { baseUrl, searchUrl };
+const catImageUrl = `${baseUrl}/images`;
+
+const favouriteUrl = `${baseUrl}/favourites`;
+
+export { baseUrl, favouriteUrl, catImagesUrl, catImageUrl };

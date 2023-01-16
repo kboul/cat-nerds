@@ -5,7 +5,7 @@ import {
   screen,
   waitFor
 } from "../../tests/renderWithProviders";
-import { searchUrl } from "../../api/urls";
+import { catImagesUrl } from "../../api";
 import server from "../../tests/server";
 import CatImages from "./CatImages";
 
@@ -23,7 +23,7 @@ test("cat images appear on the screen after loading message", async () => {
 
 test("server error generates the appropriate message on the screen", async () => {
   server.resetHandlers(
-    rest.get(searchUrl, (_, res, ctx) => res(ctx.status(500)))
+    rest.get(catImagesUrl, (_, res, ctx) => res(ctx.status(500)))
   );
   renderWithProviders(<CatImages />);
 

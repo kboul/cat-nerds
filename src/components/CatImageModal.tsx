@@ -1,11 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useCallback, useMemo } from "react";
 
-import { getCatImage } from "../api/cats";
+import Modal from "./Modal";
 import CatImageCard from "./CatImageCard";
 import CenteredText from "./CenteredText";
+import { favouriteCatImage, getCatImage } from "../api";
 import { routes } from "../routes";
-import Modal from "./Modal";
+import { queryClient } from "../queryClient";
 
 export default function CatImageModal() {
   const { catImageId } = useParams();
@@ -22,6 +24,17 @@ export default function CatImageModal() {
     staleTime: 60000 // 1min
   });
 
+  const { mutate } = useMutation(favouriteCatImage, {
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["favouriteCatImages"] })
+  });
+
+  const handleIconClick = useCallback(() => {
+    if (catImageId) mutate(catImageId);
+  }, [mutate, catImageId]);
+
+  const memoedBreeds = useMemo(() => catImage?.breeds, [catImage?.breeds]);
+
   let content = null;
   if (isFetching)
     content = <CenteredText isModal text="Loading cat image..." />;
@@ -29,8 +42,9 @@ export default function CatImageModal() {
   if (catImage)
     content = (
       <CatImageCard
-        breeds={catImage.breeds}
+        breeds={memoedBreeds}
         id={catImage.id}
+        onIconClick={handleIconClick}
         responsive={false}
         url={catImage.url}
       />
