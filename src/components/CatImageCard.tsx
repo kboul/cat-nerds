@@ -32,7 +32,7 @@ export default memo(function CatImageCard({
       onClick={handleImageClick}>
       <article className="overflow-hidden rounded-lg shadow-lg">
         <Image
-          className="block w-full h-[350px] object-cover"
+          className="block w-full img-height object-cover"
           placeholderImg="/loadingImage.png"
           src={url}
         />
