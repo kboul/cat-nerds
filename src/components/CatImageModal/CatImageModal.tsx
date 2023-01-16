@@ -2,12 +2,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 
-import Modal from "./Modal";
-import CatImageCard from "./CatImageCard";
-import CenteredText from "./CenteredText";
-import { favouriteCatImage, getCatImage } from "../api";
-import { routes } from "../routes";
-import { queryClient } from "../queryClient";
+import Modal from "../Modal";
+import CatImageCard from "../CatImageCard";
+import CenteredText from "../CenteredText";
+import { favouriteCatImage, getCatImage } from "../../api";
+import { routes } from "../../routes";
+import { queryClient } from "../../queryClient";
 
 export default function CatImageModal() {
   const { catImageId } = useParams();

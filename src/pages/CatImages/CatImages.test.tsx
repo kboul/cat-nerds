@@ -1,12 +1,7 @@
 import { rest } from "msw";
 
-import {
-  renderWithProviders,
-  screen,
-  waitFor
-} from "../../tests/renderWithProviders";
+import { renderWithProviders, screen, waitFor, server } from "../../tests";
 import { catImagesUrl } from "../../api";
-import server from "../../tests/server";
 import CatImages from "./CatImages";
 
 test("loading message appears initially on the screen when page loads", () => {
