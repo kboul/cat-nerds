@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render } from "@testing-library/react";
 import { ReactElement, ReactNode } from "react";
+import { BrowserRouter } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,11 +23,13 @@ interface WrapperProps {
 
 const Wrapper = ({ children }: WrapperProps) => {
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>{children}</BrowserRouter>
+    </QueryClientProvider>
   );
 };
 
 export * from "@testing-library/react";
 
-export const renderWithQueryClient = (ui: ReactElement) =>
+export const renderWithProviders = (ui: ReactElement) =>
   render(ui, { wrapper: Wrapper });
