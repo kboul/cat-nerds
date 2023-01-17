@@ -82,10 +82,10 @@ export default memo(function CatImageCard({
               "Loading..."
             ) : (
               <FavouriteIcon
+                aria-label={isImageFavourite ? "FilledStaredIcon" : "StarIcon"}
                 className={`h-6 w-6 ${
                   (!isImageFavourite || !clickableCard) && "cursor-pointer"
                 }`}
-                id={isImageFavourite ? "FilledStaredIcon" : "StarIcon"}
                 onClick={handleIconClick}
                 title={favouriteIconTitle}
               />

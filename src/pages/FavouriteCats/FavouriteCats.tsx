@@ -51,7 +51,7 @@ export default function FavouriteCats() {
 
   if (isError)
     content = (
-      <CenteredText text="There was an error while fetching the favourite cats." />
+      <CenteredText text="There was an error while fetching favourite cat images." />
     );
 
   return content;
