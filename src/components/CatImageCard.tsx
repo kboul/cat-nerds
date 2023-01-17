@@ -11,6 +11,7 @@ import { getFavouriteCatImages } from "../api";
 
 interface CatImageCardProps {
   breeds?: Breed[] | [];
+  className?: string;
   clickableCard?: boolean;
   id: string;
   onIconClick?: () => void;
@@ -21,6 +22,7 @@ interface CatImageCardProps {
 
 export default memo(function CatImageCard({
   breeds = [],
+  className,
   clickableCard = true,
   id,
   onIconClick,
@@ -62,7 +64,7 @@ export default memo(function CatImageCard({
       onClick={handleImageClick}>
       <article className="overflow-hidden rounded-lg shadow-lg">
         <Image
-          className="block w-full img-height object-cover"
+          className={`block w-full img-height object-cover ${className}`}
           placeholderImg="/loadingImage.png"
           src={url}
         />

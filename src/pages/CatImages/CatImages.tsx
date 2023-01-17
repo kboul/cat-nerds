@@ -28,16 +28,20 @@ export default function CatImages() {
 
   if (catImages.length > 0)
     content = (
-      <>
-        <div className="container my-12 mx-auto px-4 md:px-12">
-          <div className="flex flex-wrap -mx-1 lg:-mx-4 cursor-pointer">
-            {catImages.map(({ id, url }) => (
-              <CatImageCard key={id} id={id} showDetails={false} url={url} />
-            ))}
-          </div>
-          <Button onClick={handleLoadMoreClick}>Load more</Button>
+      <div className="flex-container">
+        <div className="flex-grid">
+          {catImages.map(({ id, url }) => (
+            <CatImageCard
+              className="cursor-pointer"
+              key={id}
+              id={id}
+              showDetails={false}
+              url={url}
+            />
+          ))}
         </div>
-      </>
+        <Button onClick={handleLoadMoreClick}>Load more</Button>
+      </div>
     );
 
   if (isError)

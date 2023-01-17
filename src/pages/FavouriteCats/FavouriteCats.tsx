@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getFavouriteCatImages } from "../../api";
+
 import { CatImageCard, CenteredText } from "../../components";
+import { getFavouriteCatImages } from "../../api";
 
 export default function FavouriteCats() {
   const {
@@ -18,20 +19,18 @@ export default function FavouriteCats() {
 
   if (favouriteCatImages.length > 0)
     content = (
-      <>
-        <div className="container my-12 mx-auto px-4 md:px-12">
-          <div className="flex flex-wrap -mx-1 lg:-mx-4">
-            {favouriteCatImages.map(({ id, image }) => (
-              <CatImageCard
-                clickableCard={false}
-                id={image.id}
-                key={id}
-                url={image.url}
-              />
-            ))}
-          </div>
+      <div className="flex-container">
+        <div className="flex-grid">
+          {favouriteCatImages.map(({ id, image }) => (
+            <CatImageCard
+              clickableCard={false}
+              id={image.id}
+              key={id}
+              url={image.url}
+            />
+          ))}
         </div>
-      </>
+      </div>
     );
 
   if (isError)
