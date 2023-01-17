@@ -1,7 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
+import { useCallback } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { CatImageCard, CenteredText } from "../../components";
-import { getFavouriteCatImages } from "../../api";
+import { getFavouriteCatImages, removeFavouriteCatImage } from "../../api";
+import { queryClient } from "../../queryClient";
+import { queryKeys } from "../../constants";
 
 export default function FavouriteCats() {
   const {
@@ -9,10 +12,22 @@ export default function FavouriteCats() {
     isFetching,
     isError
   } = useQuery({
-    queryKey: ["favouriteCatImages"],
+    queryKey: [queryKeys.favouriteCatImages],
     queryFn: getFavouriteCatImages,
     initialData: []
   });
+
+  const { mutate } = useMutation(removeFavouriteCatImage, {
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.favouriteCatImages]
+      })
+  });
+
+  const handleIconClick = useCallback(
+    (favouriteId: number) => mutate(favouriteId),
+    [mutate]
+  );
 
   let content = null;
   if (isFetching) content = <CenteredText text="Loading favourite cats..." />;
@@ -26,6 +41,7 @@ export default function FavouriteCats() {
               clickableCard={false}
               id={image.id}
               key={id}
+              onIconClick={() => handleIconClick(id)}
               url={image.url}
             />
           ))}

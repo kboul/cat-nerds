@@ -8,6 +8,7 @@ import CenteredText from "../CenteredText";
 import { favouriteCatImage, getCatImage } from "../../api";
 import { routes } from "../../routes";
 import { queryClient } from "../../queryClient";
+import { queryKeys } from "../../constants";
 
 export default function CatImageModal() {
   const { catImageId } = useParams();
@@ -26,7 +27,9 @@ export default function CatImageModal() {
 
   const { mutate } = useMutation(favouriteCatImage, {
     onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ["favouriteCatImages"] })
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.favouriteCatImages]
+      })
   });
 
   const handleIconClick = useCallback(() => {

@@ -8,6 +8,7 @@ import Image from "./Image";
 import { Breed } from "../models";
 import { routes } from "../routes";
 import { getFavouriteCatImages } from "../api";
+import { queryKeys } from "../constants";
 
 interface CatImageCardProps {
   breeds?: Breed[] | [];
@@ -33,7 +34,7 @@ export default memo(function CatImageCard({
   const navigate = useNavigate();
 
   const { data: favouriteCatImages, isFetching } = useQuery({
-    queryKey: ["favouriteCatImages"],
+    queryKey: [queryKeys.favouriteCatImages],
     queryFn: getFavouriteCatImages,
     staleTime: 60000
   });
@@ -46,7 +47,7 @@ export default memo(function CatImageCard({
     clickableCard && navigate(`/${routes.catImages.path}/${id}`);
 
   const handleIconClick = () => {
-    if (isImageFavourite) return;
+    if (!showDetails) return;
     onIconClick && onIconClick();
   };
 
@@ -55,7 +56,7 @@ export default memo(function CatImageCard({
   const FavouriteIcon = isImageFavourite ? FilledStaredIcon : StarIcon;
 
   const favouriteIconTitle = isImageFavourite
-    ? "Favorite image"
+    ? "Favourite image"
     : "Mark as favourite";
 
   return (

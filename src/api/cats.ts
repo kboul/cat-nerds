@@ -34,4 +34,18 @@ const favouriteCatImage = async (
     body: JSON.stringify({ image_id: imageId, sub_id: "kboul" })
   }).then((res) => res.json());
 
-export { getCatImages, getCatImage, getFavouriteCatImages, favouriteCatImage };
+const removeFavouriteCatImage = async (
+  favouriteId: number
+): Promise<{ message: string }> =>
+  fetch(`${favouriteUrl}/${favouriteId}`, {
+    method: "DELETE",
+    headers
+  }).then((res) => res.json());
+
+export {
+  getCatImages,
+  getCatImage,
+  getFavouriteCatImages,
+  favouriteCatImage,
+  removeFavouriteCatImage
+};
