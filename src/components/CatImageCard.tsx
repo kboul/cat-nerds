@@ -11,25 +11,28 @@ import { getFavouriteCatImages } from "../api";
 
 interface CatImageCardProps {
   breeds?: Breed[] | [];
+  clickableCard?: boolean;
   id: string;
   onIconClick?: () => void;
   responsive?: boolean;
+  showDetails?: boolean;
   url: string;
 }
 
 export default memo(function CatImageCard({
   breeds = [],
+  clickableCard = true,
   id,
   onIconClick,
   responsive = true,
+  showDetails = true,
   url
 }: CatImageCardProps) {
   const navigate = useNavigate();
 
-  const { data: favouriteCatImages, isLoading } = useQuery({
+  const { data: favouriteCatImages, isFetching } = useQuery({
     queryKey: ["favouriteCatImages"],
     queryFn: getFavouriteCatImages,
-    enabled: !responsive,
     staleTime: 60000
   });
 
@@ -37,7 +40,8 @@ export default memo(function CatImageCard({
     ({ image_id: imageId }) => imageId === id
   );
 
-  const handleImageClick = () => navigate(`/${routes.catImages.path}/${id}`);
+  const handleImageClick = () =>
+    clickableCard && navigate(`/${routes.catImages.path}/${id}`);
 
   const handleIconClick = () => {
     if (isImageFavourite) return;
@@ -63,25 +67,27 @@ export default memo(function CatImageCard({
           src={url}
         />
 
-        {!responsive && (
-          <footer className="flex items-center justify-between leading-none p-2 md:p-4">
+        {showDetails && (
+          <div className="flex items-center justify-between leading-none p-2 md:p-4">
             <div className="flex flex-1 items-center no-underline hover:underline text-black">
               {breeds?.length > 0 && (
                 <p className="ml-2 text-sm">{breeds[0].name} cat</p>
               )}
             </div>
 
-            {isLoading ? (
+            {isFetching ? (
               "Loading..."
             ) : (
               <FavouriteIcon
-                className={`h-6 w-6 ${!isImageFavourite && "cursor-pointer"}`}
+                className={`h-6 w-6 ${
+                  (!isImageFavourite || !clickableCard) && "cursor-pointer"
+                }`}
                 id={isImageFavourite ? "FilledStaredIcon" : "StarIcon"}
                 onClick={handleIconClick}
                 title={favouriteIconTitle}
               />
             )}
-          </footer>
+          </div>
         )}
       </article>
     </div>
