@@ -73,4 +73,11 @@ const catImages: CatImage[] = [
   }
 ];
 
-export { catImages };
+const catImage = {
+  id: "cdr",
+  url: "https://cdn2.thecatapi.com/images/cdr.png",
+  width: 400,
+  height: 600
+};
+
+export { catImages, catImage };

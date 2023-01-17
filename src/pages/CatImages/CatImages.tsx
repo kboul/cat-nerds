@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
+import { Outlet } from "react-router-dom";
 
-import { getCatImages } from "../../api/cats";
-import { Button, Card, CenteredText } from "../../components";
+import { getCatImages } from "../../api";
+import { Button, CatImageCard, CenteredText } from "../../components";
 
 export default function CatImages() {
   const [limit, setLimit] = useState(10);
@@ -29,9 +30,9 @@ export default function CatImages() {
     content = (
       <>
         <div className="container my-12 mx-auto px-4 md:px-12">
-          <div className="flex flex-wrap -mx-1 lg:-mx-4">
+          <div className="flex flex-wrap -mx-1 lg:-mx-4 cursor-pointer">
             {catImages.map(({ id, url }) => (
-              <Card key={id} url={url} />
+              <CatImageCard key={id} id={id} url={url} />
             ))}
           </div>
           <Button onClick={handleLoadMoreClick}>Load more</Button>
@@ -44,5 +45,9 @@ export default function CatImages() {
       <CenteredText text="There was an error while fetching the cat images." />
     );
 
-  return content;
+  return (
+    <>
+      {content} <Outlet />
+    </>
+  );
 }

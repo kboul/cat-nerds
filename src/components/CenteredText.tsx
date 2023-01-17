@@ -1,11 +1,9 @@
 interface CenteredTextProps {
+  isModal?: boolean;
   text: string;
 }
 
-export default function CenteredText({ text }: CenteredTextProps) {
-  return (
-    <p className="flex justify-center items-center h-[calc(100vh-56px)]">
-      {text}
-    </p>
-  );
+export default function CenteredText({ isModal, text }: CenteredTextProps) {
+  const height = isModal ? "img-height" : "app-height";
+  return <p className={`flex justify-center items-center ${height}`}>{text}</p>;
 }

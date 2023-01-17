@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .app-height {
+    @apply h-[calc(100vh-56px)];
+  }
+
+  .img-height {
+    @apply h-[350px];
+  }
+}

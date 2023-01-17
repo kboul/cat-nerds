@@ -4,7 +4,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 
-import server from "./tests/server";
+import { server } from "./tests";
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }));
