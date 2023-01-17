@@ -80,6 +80,4 @@ const catImage = {
   height: 600
 };
 
-const catImageId = "cdr";
-
-export { catImages, catImage, catImageId };
+export { catImages, catImage };

@@ -76,6 +76,7 @@ export default memo(function CatImageCard({
             ) : (
               <FavouriteIcon
                 className={`h-6 w-6 ${!isImageFavourite && "cursor-pointer"}`}
+                id={isImageFavourite ? "FilledStaredIcon" : "StarIcon"}
                 onClick={handleIconClick}
                 title={favouriteIconTitle}
               />
