@@ -1,5 +1,6 @@
 const queryKeys = {
-  favouriteCatImages: "favouriteCatImages"
+  favouriteCatImages: "favouriteCatImages",
+  catBreeds: "catBreeds"
 };
 
 export { queryKeys };

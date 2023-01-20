@@ -1,6 +1,6 @@
-import { CatImage } from "../models";
+import { CatBreed, CatImage } from "../models";
 import { Favourite } from "../models";
-import { catImageUrl, favouriteUrl, catImagesUrl } from "./urls";
+import { catImageUrl, favouriteUrl, catImagesUrl, catBreedsUrl } from "./urls";
 
 const headers = {
   "x-api-key": process.env.REACT_APP_CAT_API_KEY ?? "",
@@ -42,10 +42,17 @@ const removeFavouriteCatImage = async (
     headers
   }).then((res) => res.json());
 
+const getCatBreeds = async (): Promise<CatBreed[]> =>
+  fetch(`${catBreedsUrl}`, {
+    method: "GET",
+    headers
+  }).then((res) => res.json());
+
 export {
   getCatImages,
   getCatImage,
   getFavouriteCatImages,
   favouriteCatImage,
-  removeFavouriteCatImage
+  removeFavouriteCatImage,
+  getCatBreeds
 };
