@@ -10,4 +10,12 @@
   .img-height {
     @apply h-[350px];
   }
+
+  .flex-container {
+    @apply container my-12 mx-auto px-4 md:px-12;
+  }
+
+  .flex-grid {
+    @apply flex flex-wrap -mx-1 lg:-mx-4;
+  }
 }

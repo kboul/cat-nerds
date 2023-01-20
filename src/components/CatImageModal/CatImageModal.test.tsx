@@ -28,5 +28,5 @@ test("favourite icon appears on the screen after image loading and it is not fil
   await waitForElementToBeRemoved(() => screen.getByText("Loading..."));
 
   // eslint-disable-next-line testing-library/no-node-access
-  expect(document.getElementById("StarIcon")).toBeInTheDocument();
+  expect(screen.getByLabelText("StarIcon")).toBeInTheDocument();
 });

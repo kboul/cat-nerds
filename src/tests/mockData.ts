@@ -80,4 +80,15 @@ const catImage = {
   height: 600
 };
 
-export { catImages, catImage };
+const favouriteCatImages = [
+  {
+    id: 101295958,
+    user_id: "gizk0v",
+    image_id: "3lv",
+    sub_id: "kboul",
+    created_at: "2023-01-16T18:26:46.000Z",
+    image: { id: "3lv", url: "https://cdn2.thecatapi.com/images/3lv.jpg" }
+  }
+];
+
+export { catImages, catImage, favouriteCatImages };

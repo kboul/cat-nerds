@@ -8,28 +8,34 @@ import Image from "./Image";
 import { Breed } from "../models";
 import { routes } from "../routes";
 import { getFavouriteCatImages } from "../api";
+import { queryKeys } from "../constants";
 
 interface CatImageCardProps {
   breeds?: Breed[] | [];
+  className?: string;
+  clickableCard?: boolean;
   id: string;
   onIconClick?: () => void;
   responsive?: boolean;
+  showDetails?: boolean;
   url: string;
 }
 
 export default memo(function CatImageCard({
   breeds = [],
+  className,
+  clickableCard = true,
   id,
   onIconClick,
   responsive = true,
+  showDetails = true,
   url
 }: CatImageCardProps) {
   const navigate = useNavigate();
 
-  const { data: favouriteCatImages, isLoading } = useQuery({
-    queryKey: ["favouriteCatImages"],
+  const { data: favouriteCatImages, isFetching } = useQuery({
+    queryKey: [queryKeys.favouriteCatImages],
     queryFn: getFavouriteCatImages,
-    enabled: !responsive,
     staleTime: 60000
   });
 
@@ -37,10 +43,11 @@ export default memo(function CatImageCard({
     ({ image_id: imageId }) => imageId === id
   );
 
-  const handleImageClick = () => navigate(`/${routes.catImages.path}/${id}`);
+  const handleImageClick = () =>
+    clickableCard && navigate(`/${routes.catImages.path}/${id}`);
 
   const handleIconClick = () => {
-    if (isImageFavourite) return;
+    if (!showDetails) return;
     onIconClick && onIconClick();
   };
 
@@ -49,7 +56,7 @@ export default memo(function CatImageCard({
   const FavouriteIcon = isImageFavourite ? FilledStaredIcon : StarIcon;
 
   const favouriteIconTitle = isImageFavourite
-    ? "Favorite image"
+    ? "Favourite image"
     : "Mark as favourite";
 
   return (
@@ -58,30 +65,32 @@ export default memo(function CatImageCard({
       onClick={handleImageClick}>
       <article className="overflow-hidden rounded-lg shadow-lg">
         <Image
-          className="block w-full img-height object-cover"
+          className={`block w-full img-height object-cover ${className}`}
           placeholderImg="/loadingImage.png"
           src={url}
         />
 
-        {!responsive && (
-          <footer className="flex items-center justify-between leading-none p-2 md:p-4">
+        {showDetails && (
+          <div className="flex items-center justify-between leading-none p-2 md:p-4">
             <div className="flex flex-1 items-center no-underline hover:underline text-black">
               {breeds?.length > 0 && (
                 <p className="ml-2 text-sm">{breeds[0].name} cat</p>
               )}
             </div>
 
-            {isLoading ? (
+            {isFetching ? (
               "Loading..."
             ) : (
               <FavouriteIcon
-                className={`h-6 w-6 ${!isImageFavourite && "cursor-pointer"}`}
-                id={isImageFavourite ? "FilledStaredIcon" : "StarIcon"}
+                aria-label={isImageFavourite ? "FilledStaredIcon" : "StarIcon"}
+                className={`h-6 w-6 ${
+                  (!isImageFavourite || !clickableCard) && "cursor-pointer"
+                }`}
                 onClick={handleIconClick}
                 title={favouriteIconTitle}
               />
             )}
-          </footer>
+          </div>
         )}
       </article>
     </div>
