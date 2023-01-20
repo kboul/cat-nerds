@@ -19,17 +19,17 @@ describe("loading & response success state", () => {
   });
 
   test("favourite star icon appears on the screen and is filled", async () => {
-    const filledStarIcon = await screen.findByLabelText("FilledStaredIcon");
+    const filledStarIcon = await screen.findByLabelText("filledStaredIcon");
     expect(filledStarIcon).toBeInTheDocument();
   });
 
   test("clicking favourite star icon removes the image from favourites page", async () => {
-    const filledStarIcon = await screen.findByLabelText("FilledStaredIcon");
+    const filledStarIcon = await screen.findByLabelText("filledStaredIcon");
 
     await userEvent.click(filledStarIcon);
     await waitFor(() => {
       expect(
-        screen.queryByLabelText("FilledStaredIcon")
+        screen.queryByLabelText("filledStaredIcon")
       ).not.toBeInTheDocument();
     });
   });

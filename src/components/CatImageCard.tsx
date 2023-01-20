@@ -82,7 +82,7 @@ export default memo(function CatImageCard({
               "Loading..."
             ) : (
               <FavouriteIcon
-                aria-label={isImageFavourite ? "FilledStaredIcon" : "StarIcon"}
+                aria-label={isImageFavourite ? "filledStaredIcon" : "starIcon"}
                 className={`h-6 w-6 ${
                   (!isImageFavourite || !clickableCard) && "cursor-pointer"
                 }`}
