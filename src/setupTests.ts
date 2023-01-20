@@ -9,8 +9,6 @@ import { server } from "./tests";
 
 const queryCache = new QueryCache();
 
-server.printHandlers();
-
 // Establish API mocking before all tests.
 beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }));
 // Reset any request handlers that we may add during the tests,
