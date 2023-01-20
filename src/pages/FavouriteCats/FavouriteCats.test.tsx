@@ -38,9 +38,7 @@ describe("loading & response success state", () => {
 describe("response failure state", () => {
   test("server error generates the appropriate message on the screen", async () => {
     server.resetHandlers(
-      rest.get(`${favouriteUrl}?sub_id=kboul`, (_, res, ctx) =>
-        res(ctx.status(500))
-      )
+      rest.get(favouriteUrl, (_, res, ctx) => res(ctx.status(500)))
     );
     renderWithProviders(<FavouriteCats />);
 
