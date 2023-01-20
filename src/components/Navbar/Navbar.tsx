@@ -1,7 +1,7 @@
 import { useId, useRef } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-import { routes } from "../routes";
+import { routes } from "../../routes";
 
 export default function Navbar() {
   const id = useId();
@@ -17,6 +17,7 @@ export default function Navbar() {
         <div className="font-bold">Cat Nerds</div>
 
         <svg
+          aria-label="burgerIcon"
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 cursor-pointer md:hidden block"
           fill="none"
@@ -32,6 +33,7 @@ export default function Navbar() {
         </svg>
 
         <div
+          aria-label="menu"
           className="hidden w-full md:flex md:items-center md:w-auto"
           ref={menuRef}>
           <ul className="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0">
@@ -39,7 +41,7 @@ export default function Navbar() {
               <li key={`${path}-${id}`}>
                 <Link
                   className={`md:p-4 py-2 block hover:text-blue-700 ${
-                    pathname.includes(path) ? "text-blue-700" : "text-gray-700 "
+                    pathname.includes(path) ? "text-blue-700" : "text-gray-700"
                   }`}
                   to={path}>
                   {name}
