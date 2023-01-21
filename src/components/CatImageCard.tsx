@@ -5,13 +5,13 @@ import { StarIcon as FilledStaredIcon } from "@heroicons/react/24/solid";
 import { useQuery } from "@tanstack/react-query";
 
 import Image from "./Image";
-import { Breed } from "../models";
+import { CatBreed } from "../models";
 import { routes } from "../routes";
 import { getFavouriteCatImages } from "../api";
 import { queryKeys } from "../constants";
 
 interface CatImageCardProps {
-  breeds?: Breed[] | [];
+  breeds?: CatBreed[] | [];
   className?: string;
   clickableCard?: boolean;
   id: string;

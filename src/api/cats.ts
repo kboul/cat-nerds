@@ -1,17 +1,24 @@
-import { CatImage } from "../models";
+import { CatBreed, CatImage } from "../models";
 import { Favourite } from "../models";
-import { catImageUrl, favouriteUrl, catImagesUrl } from "./urls";
+import { catImageUrl, favouriteUrl, catImagesUrl, catBreedsUrl } from "./urls";
 
 const headers = {
   "x-api-key": process.env.REACT_APP_CAT_API_KEY ?? "",
   "Content-Type": "application/json"
 };
 
-const getCatImages = async (limit: number): Promise<CatImage[]> =>
-  fetch(`${catImagesUrl}?limit=${limit}`, {
+const getCatImages = async (
+  limit: number,
+  catBreedId?: string
+): Promise<CatImage[]> => {
+  let endpoint = `${catImagesUrl}?limit=${limit}`;
+  endpoint = catBreedId ? `${endpoint}&breed_ids=${catBreedId}` : endpoint;
+
+  return fetch(endpoint, {
     method: "GET",
     headers
   }).then((res) => res.json());
+};
 
 const getCatImage = async (catImageId: string): Promise<CatImage> =>
   fetch(`${catImageUrl}/${catImageId}`, {
@@ -42,10 +49,17 @@ const removeFavouriteCatImage = async (
     headers
   }).then((res) => res.json());
 
+const getCatBreeds = async (): Promise<CatBreed[]> =>
+  fetch(catBreedsUrl, {
+    method: "GET",
+    headers
+  }).then((res) => res.json());
+
 export {
   getCatImages,
   getCatImage,
   getFavouriteCatImages,
   favouriteCatImage,
-  removeFavouriteCatImage
+  removeFavouriteCatImage,
+  getCatBreeds
 };

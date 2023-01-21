@@ -1,7 +1,7 @@
-import Breed from "./breed";
+import CatBreed from "./catBreed";
 
 export default interface CatImage {
-  breeds: Breed[] | [];
+  breeds: CatBreed[] | [];
   height: number;
   id: string;
   url: string;

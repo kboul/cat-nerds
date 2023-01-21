@@ -13,7 +13,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white">
+      <nav className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white sticky top-0 z-50">
         <div className="font-bold">Cat Nerds</div>
 
         <svg

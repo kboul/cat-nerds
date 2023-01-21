@@ -1,4 +1,4 @@
-export default interface Breed {
+export default interface CatBreed {
   adaptability: number;
   affection_level: number;
   alt_names: string;

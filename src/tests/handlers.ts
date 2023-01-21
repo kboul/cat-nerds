@@ -1,16 +1,21 @@
 import { rest } from "msw";
 
-import { catImagesUrl, catImageUrl, favouriteUrl } from "../api";
+import { catBreedsUrl, catImagesUrl, catImageUrl, favouriteUrl } from "../api";
 import {
   catImages,
   catImage,
   favouriteCatImages,
-  loadMoreCatImages
+  loadMoreCatImages,
+  catBreedImages,
+  catBreeds
 } from "./mockData";
 
 export const handlers = [
   rest.get(catImagesUrl, (req, res, ctx) => {
     const limit = req.url.searchParams.get("limit");
+    const breedIds = req.url.searchParams.get("breed_ids");
+
+    if (limit === "10" && breedIds) return res(ctx.json(catBreedImages));
     if (limit === "20") return res(ctx.json(loadMoreCatImages));
     return res(ctx.json(catImages));
   }),
@@ -19,5 +24,6 @@ export const handlers = [
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const limit = req.url.searchParams.get("sub_id");
     return res(ctx.json(favouriteCatImages));
-  })
+  }),
+  rest.get(catBreedsUrl, (_, res, ctx) => res(ctx.json(catBreeds)))
 ];

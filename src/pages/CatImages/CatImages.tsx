@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 
 import { getCatImages } from "../../api";
 import { Button, CatImageCard, CenteredText } from "../../components";
+import { queryKeys } from "../../constants";
 
 export default function CatImages() {
   const [limit, setLimit] = useState(10);
@@ -14,7 +15,7 @@ export default function CatImages() {
     data: catImages
   } = useQuery({
     initialData: [],
-    queryKey: ["catImages", limit],
+    queryKey: [queryKeys.catImages, limit],
     queryFn: () => getCatImages(limit)
   });
 
