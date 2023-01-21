@@ -28,7 +28,7 @@ export default memo(function CatImageCard({
   id,
   onIconClick,
   responsive = true,
-  showDetails = true,
+  showDetails = false,
   url
 }: CatImageCardProps) {
   const navigate = useNavigate();

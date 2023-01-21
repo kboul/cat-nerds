@@ -34,7 +34,6 @@ export default function CatBreedModal() {
               className="cursor-pointer"
               key={id}
               id={id}
-              showDetails={false}
               url={url}
             />
           ))}
