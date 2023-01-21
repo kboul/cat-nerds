@@ -11,6 +11,7 @@ import { getFavouriteCatImages } from "../api";
 import { queryKeys } from "../constants";
 
 interface CatImageCardProps {
+  breedId?: string;
   breeds?: CatBreed[] | [];
   className?: string;
   clickableCard?: boolean;
@@ -22,6 +23,7 @@ interface CatImageCardProps {
 }
 
 export default memo(function CatImageCard({
+  breedId,
   breeds = [],
   className,
   clickableCard = true,
@@ -43,8 +45,11 @@ export default memo(function CatImageCard({
     ({ image_id: imageId }) => imageId === id
   );
 
-  const handleImageClick = () =>
-    clickableCard && navigate(`/${routes.catImages.path}/${id}`);
+  const handleImageClick = () => {
+    if (!clickableCard) return;
+    if (!breedId) navigate(`/${routes.catImages.path}/${id}`);
+    if (breedId) navigate(`/${routes.breedDetails.path}/${breedId}`);
+  };
 
   const handleIconClick = () => {
     if (!showDetails) return;
@@ -58,6 +63,10 @@ export default memo(function CatImageCard({
   const favouriteIconTitle = isImageFavourite
     ? "Favourite image"
     : "Mark as favourite";
+
+  const handleBreedNameClick = (breedId: string) => () => {
+    navigate(`/${routes.breedDetails.path}/${breedId}`);
+  };
 
   return (
     <div
@@ -74,7 +83,11 @@ export default memo(function CatImageCard({
           <div className="flex items-center justify-between leading-none p-2 md:p-4">
             <div className="flex flex-1 items-center no-underline hover:underline text-black">
               {breeds?.length > 0 && (
-                <p className="ml-2 text-sm">{breeds[0].name} cat</p>
+                <p
+                  className="ml-2 text-sm cursor-pointer"
+                  onClick={handleBreedNameClick(breeds[0].id)}>
+                  {breeds[0].name} breed
+                </p>
               )}
             </div>
 

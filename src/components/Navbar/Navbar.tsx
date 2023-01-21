@@ -11,6 +11,8 @@ export default function Navbar() {
   const handleBurgerIconClick = () =>
     menuRef.current?.classList.toggle("hidden");
 
+  const routesArray = Object.values(routes);
+
   return (
     <>
       <nav className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white sticky top-0 z-50">
@@ -37,17 +39,21 @@ export default function Navbar() {
           className="hidden w-full md:flex md:items-center md:w-auto"
           ref={menuRef}>
           <ul className="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0">
-            {Object.values(routes).map(({ name, path }) => (
-              <li key={`${path}-${id}`}>
-                <Link
-                  className={`md:p-4 py-2 block hover:text-blue-700 ${
-                    pathname.includes(path) ? "text-blue-700" : "text-gray-700"
-                  }`}
-                  to={path}>
-                  {name}
-                </Link>
-              </li>
-            ))}
+            {routesArray
+              .slice(0, routesArray.length - 1)
+              .map(({ name, path }) => (
+                <li key={`${path}-${id}`}>
+                  <Link
+                    className={`md:p-4 py-2 block hover:text-blue-700 ${
+                      pathname.includes(path)
+                        ? "text-blue-700"
+                        : "text-gray-700"
+                    }`}
+                    to={path}>
+                    {name}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
       </nav>
