@@ -33,7 +33,7 @@ export default memo(function CatImageCard({
 }: CatImageCardProps) {
   const navigate = useNavigate();
 
-  const { data: favouriteCatImages, isFetching } = useQuery({
+  const { data: favouriteCatImages, isLoading } = useQuery({
     queryKey: [queryKeys.favouriteCatImages],
     queryFn: getFavouriteCatImages,
     staleTime: 60000
@@ -78,7 +78,7 @@ export default memo(function CatImageCard({
               )}
             </div>
 
-            {isFetching ? (
+            {isLoading ? (
               "Loading..."
             ) : (
               <FavouriteIcon
