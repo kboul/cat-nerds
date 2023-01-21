@@ -213,12 +213,7 @@ const catBreedImages = [
     height: 1366
   },
   {
-    breeds: [
-      {
-        id: "ragd",
-        name: "Ragdoll"
-      }
-    ],
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
     id: "QZYN75HxN",
     url: "https://cdn2.thecatapi.com/images/QZYN75HxN.jpg",
     width: 1024,
@@ -240,8 +235,84 @@ const catBreedImages = [
   }
 ];
 
+const breeds = [
+  "Abyssinian",
+  "Aegean",
+  "American Bobtail",
+  "American Curl",
+  "American Shorthair",
+  "American Wirehair",
+  "Arabian Mau",
+  "Australian Mist",
+  "Balinese",
+  "Bambino",
+  "Bengal",
+  "Birman",
+  "Bombay",
+  "British Longhair",
+  "British Shorthair",
+  "Burmese",
+  "Burmilla",
+  "California Spangled",
+  "Chantilly-Tiffany",
+  "Chartreux",
+  "Chausie",
+  "Cheetoh",
+  "Colorpoint Shorthair",
+  "Cornish Rex",
+  "Cymric",
+  "Cyprus",
+  "Devon Rex",
+  "Donskoy",
+  "Dragon Li",
+  "Egyptian Mau",
+  "European Burmese",
+  "Exotic Shorthair",
+  "Havana Brown",
+  "Himalayan",
+  "Japanese Bobtail",
+  "Javanese",
+  "Khao Manee",
+  "Korat",
+  "Kurilian",
+  "LaPerm",
+  "Maine Coon",
+  "Malayan",
+  "Manx",
+  "Munchkin",
+  "Nebelung",
+  "Norwegian Forest Cat",
+  "Ocicat",
+  "Oriental",
+  "Persian",
+  "Pixie-bob",
+  "Ragamuffin",
+  "Ragdoll",
+  "Russian Blue",
+  "Savannah",
+  "Scottish Fold",
+  "Selkirk Rex",
+  "Siamese",
+  "Siberian",
+  "Singapura",
+  "Snowshoe",
+  "Somali",
+  "Sphynx",
+  "Tonkinese",
+  "Toyger",
+  " Turkish Angora",
+  "Turkish Van",
+  "York Chocolate"
+];
+
+const catBreeds = breeds.map((name) => ({
+  name,
+  id: Math.random().toString(36).slice(2, 7)
+}));
+
 export {
   catBreedImages,
+  catBreeds,
   catImages,
   catImage,
   favouriteCatImages,

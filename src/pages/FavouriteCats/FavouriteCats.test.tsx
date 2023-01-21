@@ -5,7 +5,7 @@ import { favouriteUrl } from "../../api";
 import { renderWithProviders, screen, server, waitFor } from "../../tests";
 import FavouriteCats from "./FavouriteCats";
 
-describe("loading & response success state", () => {
+describe("loading & response success", () => {
   // eslint-disable-next-line testing-library/no-render-in-setup
   beforeEach(() => renderWithProviders(<FavouriteCats />));
 
@@ -35,7 +35,7 @@ describe("loading & response success state", () => {
   });
 });
 
-describe("response failure state", () => {
+describe("response failure", () => {
   test("server error generates the appropriate message on the screen", async () => {
     server.resetHandlers(
       rest.get(favouriteUrl, (_, res, ctx) => res(ctx.status(500)))

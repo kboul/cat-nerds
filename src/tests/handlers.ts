@@ -1,12 +1,13 @@
 import { rest } from "msw";
 
-import { catImagesUrl, catImageUrl, favouriteUrl } from "../api";
+import { catBreedsUrl, catImagesUrl, catImageUrl, favouriteUrl } from "../api";
 import {
   catImages,
   catImage,
   favouriteCatImages,
   loadMoreCatImages,
-  catBreedImages
+  catBreedImages,
+  catBreeds
 } from "./mockData";
 
 export const handlers = [
@@ -23,5 +24,6 @@ export const handlers = [
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const limit = req.url.searchParams.get("sub_id");
     return res(ctx.json(favouriteCatImages));
-  })
+  }),
+  rest.get(catBreedsUrl, (_, res, ctx) => res(ctx.json(catBreeds)))
 ];

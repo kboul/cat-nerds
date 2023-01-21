@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
-import { CenteredText } from "../components";
-import { getCatBreeds } from "../api";
-import { queryKeys } from "../constants";
-import { routes } from "../routes";
+import { CenteredText } from "../../components";
+import { getCatBreeds } from "../../api";
+import { queryKeys } from "../../constants";
+import { routes } from "../../routes";
 
 export default function CatBreeds() {
   const navigate = useNavigate();
