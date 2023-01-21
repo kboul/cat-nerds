@@ -15,26 +15,27 @@ export default function CatBreedModal() {
   const {
     isFetching,
     isError,
-    data: catImages
+    data: catBreeds
   } = useQuery({
     initialData: [],
     queryKey: [queryKeys.catBreeds, catBreedId],
     queryFn: () => getCatImages(10, catBreedId)
   });
 
+  const breedName = catBreeds[0]?.breeds[0]?.name ?? "Cat";
+
   let content = null;
   if (isFetching) content = <CenteredText text="Loading cat breed images..." />;
 
-  if (catImages.length > 0) {
+  if (catBreeds.length > 0) {
     content = (
       <div className="flex-container">
         <div className="flex-grid">
-          {catImages.map(({ id, url }) => (
+          {catBreeds.map(({ id, url }) => (
             <CatImageCard
               className="cursor-pointer"
               key={id}
               id={id}
-              showDetails={false}
               url={url}
             />
           ))}
@@ -51,7 +52,7 @@ export default function CatBreedModal() {
   return (
     <Modal
       size="large"
-      title="Cat Breed Images"
+      title={`${breedName} Breed Images`}
       onModalClose={() => navigate(`/${routes.catBreeds.path}`)}>
       {content}
     </Modal>

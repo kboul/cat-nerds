@@ -42,6 +42,7 @@ export default function FavouriteCats() {
               id={image.id}
               key={id}
               onIconClick={() => handleIconClick(id)}
+              showDetails
               url={image.url}
             />
           ))}

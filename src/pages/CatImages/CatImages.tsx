@@ -36,7 +36,6 @@ export default function CatImages() {
               className="cursor-pointer"
               key={id}
               id={id}
-              showDetails={false}
               url={url}
             />
           ))}

@@ -49,6 +49,7 @@ export default function CatImageModal() {
         id={catImage.id}
         onIconClick={handleIconClick}
         responsive={false}
+        showDetails
         url={catImage.url}
       />
     );
