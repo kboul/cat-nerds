@@ -19,7 +19,7 @@ export default function CatImageModal() {
     isError,
     data: catImage
   } = useQuery({
-    queryKey: ["catImage", catImageId],
+    queryKey: [queryKeys.catImage, catImageId],
     queryFn: () => getCatImage(catImageId ?? ""),
     enabled: !!catImageId,
     staleTime: 60000 // 1min

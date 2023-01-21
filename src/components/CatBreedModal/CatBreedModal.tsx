@@ -6,6 +6,7 @@ import CenteredText from "../CenteredText";
 import CatImageCard from "../CatImageCard";
 import { routes } from "../../routes";
 import { getCatImages } from "../../api";
+import { queryKeys } from "../../constants";
 
 export default function CatBreedModal() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function CatBreedModal() {
     data: catImages
   } = useQuery({
     initialData: [],
-    queryKey: ["catBreeds", catBreedId],
+    queryKey: [queryKeys.catBreeds, catBreedId],
     queryFn: () => getCatImages(10, catBreedId)
   });
 

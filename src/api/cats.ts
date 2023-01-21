@@ -50,7 +50,7 @@ const removeFavouriteCatImage = async (
   }).then((res) => res.json());
 
 const getCatBreeds = async (): Promise<CatBreed[]> =>
-  fetch(`${catBreedsUrl}`, {
+  fetch(catBreedsUrl, {
     method: "GET",
     headers
   }).then((res) => res.json());
