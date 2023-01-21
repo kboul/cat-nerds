@@ -7,11 +7,18 @@ const headers = {
   "Content-Type": "application/json"
 };
 
-const getCatImages = async (limit: number): Promise<CatImage[]> =>
-  fetch(`${catImagesUrl}?limit=${limit}`, {
+const getCatImages = async (
+  limit: number,
+  catBreedId?: string
+): Promise<CatImage[]> => {
+  let endpoint = `${catImagesUrl}?limit=${limit}`;
+  endpoint = catBreedId ? `${endpoint}&breed_ids=${catBreedId}` : endpoint;
+
+  return fetch(endpoint, {
     method: "GET",
     headers
   }).then((res) => res.json());
+};
 
 const getCatImage = async (catImageId: string): Promise<CatImage> =>
   fetch(`${catImageUrl}/${catImageId}`, {

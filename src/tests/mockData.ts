@@ -129,141 +129,21 @@ const loadMoreCatImages = [
     height: 215
   },
   {
-    breeds: [
-      {
-        weight: { imperial: "5 - 9", metric: "2 - 4" },
-        id: "munc",
-        name: "Munchkin",
-        vetstreet_url: "http://www.vetstreet.com/cats/munchkin",
-        temperament: "Agile, Easy Going, Intelligent, Playful",
-        origin: "United States",
-        country_codes: "US",
-        country_code: "US",
-        description:
-          "The Munchkin is an outgoing cat who enjoys being handled. She has lots of energy and is faster and more agile than she looks. The shortness of their legs does not seem to interfere with their running and leaping abilities.",
-        life_span: "10 - 15",
-        indoor: 0,
-        lap: 1,
-        alt_names: "",
-        adaptability: 5,
-        affection_level: 5,
-        child_friendly: 4,
-        dog_friendly: 5,
-        energy_level: 4,
-        grooming: 2,
-        health_issues: 3,
-        intelligence: 5,
-        shedding_level: 3,
-        social_needs: 5,
-        stranger_friendly: 5,
-        vocalisation: 3,
-        experimental: 0,
-        hairless: 0,
-        natural: 0,
-        rare: 0,
-        rex: 0,
-        suppressed_tail: 0,
-        short_legs: 1,
-        wikipedia_url: "https://en.wikipedia.org/wiki/Munchkin_(cat)",
-        hypoallergenic: 0,
-        reference_image_id: "j5cVSqLer"
-      }
-    ],
+    breeds: [{ id: "munc", name: "Munchkin" }],
     id: "uk0SrrBbQ",
     url: "https://cdn2.thecatapi.com/images/uk0SrrBbQ.jpg",
     width: 2329,
     height: 2097
   },
   {
-    breeds: [
-      {
-        weight: { imperial: "5 - 9", metric: "2 - 4" },
-        id: "munc",
-        name: "Munchkin",
-        vetstreet_url: "http://www.vetstreet.com/cats/munchkin",
-        temperament: "Agile, Easy Going, Intelligent, Playful",
-        origin: "United States",
-        country_codes: "US",
-        country_code: "US",
-        description:
-          "The Munchkin is an outgoing cat who enjoys being handled. She has lots of energy and is faster and more agile than she looks. The shortness of their legs does not seem to interfere with their running and leaping abilities.",
-        life_span: "10 - 15",
-        indoor: 0,
-        lap: 1,
-        alt_names: "",
-        adaptability: 5,
-        affection_level: 5,
-        child_friendly: 4,
-        dog_friendly: 5,
-        energy_level: 4,
-        grooming: 2,
-        health_issues: 3,
-        intelligence: 5,
-        shedding_level: 3,
-        social_needs: 5,
-        stranger_friendly: 5,
-        vocalisation: 3,
-        experimental: 0,
-        hairless: 0,
-        natural: 0,
-        rare: 0,
-        rex: 0,
-        suppressed_tail: 0,
-        short_legs: 1,
-        wikipedia_url: "https://en.wikipedia.org/wiki/Munchkin_(cat)",
-        hypoallergenic: 0,
-        reference_image_id: "j5cVSqLer"
-      }
-    ],
+    breeds: [{ id: "munc", name: "Munchkin" }],
     id: "LxcLIxuVT",
     url: "https://cdn2.thecatapi.com/images/LxcLIxuVT.jpg",
     width: 1671,
     height: 912
   },
   {
-    breeds: [
-      {
-        weight: { imperial: "9 - 14", metric: "4 - 6" },
-        id: "pers",
-        name: "Persian",
-        cfa_url: "http://cfa.org/Breeds/BreedsKthruR/Persian.aspx",
-        vetstreet_url: "http://www.vetstreet.com/cats/persian",
-        vcahospitals_url:
-          "https://vcahospitals.com/know-your-pet/cat-breeds/persian",
-        temperament: "Affectionate, loyal, Sedate, Quiet",
-        origin: "Iran (Persia)",
-        country_codes: "IR",
-        country_code: "IR",
-        description:
-          "Persians are sweet, gentle cats that can be playful or quiet and laid-back. Great with families and children, they absolutely love to lounge around the house. While they don’t mind a full house or active kids, they’ll usually hide when they need some alone time.",
-        life_span: "14 - 15",
-        indoor: 0,
-        lap: 1,
-        alt_names: "Longhair, Persian Longhair, Shiraz, Shirazi",
-        adaptability: 5,
-        affection_level: 5,
-        child_friendly: 2,
-        dog_friendly: 2,
-        energy_level: 1,
-        grooming: 5,
-        health_issues: 3,
-        intelligence: 3,
-        shedding_level: 4,
-        social_needs: 4,
-        stranger_friendly: 2,
-        vocalisation: 1,
-        experimental: 0,
-        hairless: 0,
-        natural: 1,
-        rare: 0,
-        rex: 0,
-        suppressed_tail: 0,
-        short_legs: 0,
-        wikipedia_url: "https://en.wikipedia.org/wiki/Persian_(cat)",
-        hypoallergenic: 0,
-        reference_image_id: "-Zfz5z2jK"
-      }
-    ],
+    breeds: [{ id: "pers", name: "Persian" }],
     id: "C0YfrgcOD",
     url: "https://cdn2.thecatapi.com/images/C0YfrgcOD.jpg",
     width: 1920,
@@ -282,4 +162,88 @@ const favouriteCatImages = [
   }
 ];
 
-export { catImages, catImage, favouriteCatImages, loadMoreCatImages };
+const catBreedImages = [
+  {
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
+    id: "y0wAin0Ei",
+    url: "https://cdn2.thecatapi.com/images/y0wAin0Ei.jpg",
+    width: 1200,
+    height: 800
+  },
+  {
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
+    id: "HDxfaNlLj",
+    url: "https://cdn2.thecatapi.com/images/HDxfaNlLj.jpg",
+    width: 1200,
+    height: 830
+  },
+  {
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
+    id: "Sy9SgPE0B",
+    url: "https://cdn2.thecatapi.com/images/Sy9SgPE0B.jpg",
+    width: 750,
+    height: 937
+  },
+  {
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
+    id: "aWVfoSN_K",
+    url: "https://cdn2.thecatapi.com/images/aWVfoSN_K.jpg",
+    width: 1080,
+    height: 1076
+  },
+  {
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
+    id: "bju16uKfD",
+    url: "https://cdn2.thecatapi.com/images/bju16uKfD.jpg",
+    width: 750,
+    height: 871
+  },
+  {
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
+    id: "HJ_7CZ6rA",
+    url: "https://cdn2.thecatapi.com/images/HJ_7CZ6rA.jpg",
+    width: 1000,
+    height: 800
+  },
+  {
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
+    id: "CeQSKi526",
+    url: "https://cdn2.thecatapi.com/images/CeQSKi526.jpg",
+    width: 1200,
+    height: 1366
+  },
+  {
+    breeds: [
+      {
+        id: "ragd",
+        name: "Ragdoll"
+      }
+    ],
+    id: "QZYN75HxN",
+    url: "https://cdn2.thecatapi.com/images/QZYN75HxN.jpg",
+    width: 1024,
+    height: 768
+  },
+  {
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
+    id: "3b2FeMj3s",
+    url: "https://cdn2.thecatapi.com/images/3b2FeMj3s.jpg",
+    width: 1920,
+    height: 1080
+  },
+  {
+    breeds: [{ id: "ragd", name: "Ragdoll" }],
+    id: "b2NdzJ36K",
+    url: "https://cdn2.thecatapi.com/images/b2NdzJ36K.jpg",
+    width: 1280,
+    height: 853
+  }
+];
+
+export {
+  catBreedImages,
+  catImages,
+  catImage,
+  favouriteCatImages,
+  loadMoreCatImages
+};

@@ -5,12 +5,16 @@ import {
   catImages,
   catImage,
   favouriteCatImages,
-  loadMoreCatImages
+  loadMoreCatImages,
+  catBreedImages
 } from "./mockData";
 
 export const handlers = [
   rest.get(catImagesUrl, (req, res, ctx) => {
     const limit = req.url.searchParams.get("limit");
+    const breedIds = req.url.searchParams.get("breed_ids");
+
+    if (limit === "10" && breedIds) return res(ctx.json(catBreedImages));
     if (limit === "20") return res(ctx.json(loadMoreCatImages));
     return res(ctx.json(catImages));
   }),
