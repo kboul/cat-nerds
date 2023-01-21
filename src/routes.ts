@@ -1,5 +1,5 @@
 export const routes = {
-  catImages: { name: "Cat images", path: "cat-images" },
-  catBreeds: { name: "Cat breeds", path: "cat-breeds" },
-  favouriteCats: { name: "Favourite cats", path: "favourite-cats" }
+  catImages: { name: "Images", path: "images" },
+  catBreeds: { name: "Breeds", path: "breeds" },
+  favouriteCats: { name: "Favourites", path: "favourites" }
 };

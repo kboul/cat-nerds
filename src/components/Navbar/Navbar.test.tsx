@@ -15,7 +15,7 @@ test("navbar has 3 routes to navigate", () => {
 });
 
 test("clicking a nav item makes it selected", async () => {
-  const catImagesLink = screen.getByText("Cat images");
+  const catImagesLink = screen.getByText("Images");
 
   const textBlueClass = "text-blue-700";
   expect(catImagesLink).not.toHaveClass(textBlueClass);
