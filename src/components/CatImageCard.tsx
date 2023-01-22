@@ -64,20 +64,19 @@ export default memo(function CatImageCard({
     ? "Favourite image"
     : "Mark as favourite";
 
-  const handleBreedNameClick = (breedId: string) => () => {
+  const handleBreedNameClick = (breedId: string) => () =>
     navigate(`/${routes.breedDetails.path}/${breedId}`);
-  };
 
   return (
-    <div
-      className={`my-1 px-1 w-full ${responsiveWidth}`}
-      onClick={handleImageClick}>
+    <div className={`my-1 px-1 w-full ${responsiveWidth}`}>
       <article className="overflow-hidden rounded-lg shadow-lg">
-        <Image
-          className={`block w-full img-height object-cover ${className}`}
-          placeholderImg="/loadingImage.png"
-          src={url}
-        />
+        <div onClick={handleImageClick}>
+          <Image
+            className={`block w-full img-height object-cover ${className}`}
+            placeholderImg="/loadingImage.png"
+            src={url}
+          />
+        </div>
 
         {showDetails && (
           <div className="flex items-center justify-between leading-none p-2 md:p-4">
