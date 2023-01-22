@@ -2,9 +2,14 @@ import { useId } from "react";
 
 import { TableProps, TableValue } from "./models";
 import Rating from "./Rating";
-import { capitalize, clickableText, getTitle, getValue, isUrl } from "./utils";
-
-const rating = [0, 1, 2, 3, 4, 5];
+import {
+  capitalize,
+  clickableText,
+  dynamicNumberArray,
+  getTitle,
+  getValue,
+  isUrl
+} from "./utils";
 
 export default function BreedTable({ data }: TableProps) {
   const id = useId();
@@ -32,7 +37,7 @@ export default function BreedTable({ data }: TableProps) {
                   className={`px-6 py-4 `}
                   onClick={handleTableValueClick(key, value)}
                   title={getTitle(value)}>
-                  {rating.includes(value) ? (
+                  {dynamicNumberArray(6).includes(value) ? (
                     <Rating count={value} />
                   ) : (
                     getValue(value)
