@@ -33,6 +33,7 @@ export default function CatBreedModal() {
         <div className="flex-grid">
           {catBreeds.map(({ id, url }) => (
             <CatImageCard
+              breedId={catBreedId ?? ""}
               className="cursor-pointer"
               key={id}
               id={id}

@@ -3,7 +3,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { CatBreedModal, CatImageModal, Navbar } from "./components";
-import { CatBreeds, CatImages, FavouriteCats, NoMatch } from "./pages";
+import {
+  BreedDetails,
+  CatBreeds,
+  CatImages,
+  FavouriteCats,
+  NoMatch
+} from "./pages";
 import { queryClient } from "./queryClient";
 import { routes } from "./routes";
 
@@ -17,6 +23,9 @@ export default function App() {
           </Route>
           <Route path={routes.catBreeds.path} element={<CatBreeds />}>
             <Route path=":catBreedId" element={<CatBreedModal />} />
+          </Route>
+          <Route path={routes.breedDetails.path}>
+            <Route path=":breedId" element={<BreedDetails />} />
           </Route>
           <Route path={routes.favouriteCats.path} element={<FavouriteCats />} />
 

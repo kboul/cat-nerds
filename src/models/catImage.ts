@@ -1,4 +1,4 @@
-import CatBreed from "./catBreed";
+import { CatBreed } from "./catBreed";
 
 export default interface CatImage {
   breeds: CatBreed[] | [];

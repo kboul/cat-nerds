@@ -1,4 +1,10 @@
-export default interface CatBreed {
+interface Weight {
+  imperial: string;
+  metric: string;
+}
+
+interface CatBreed {
+  weight: Weight;
   adaptability: number;
   affection_level: number;
   alt_names: string;
@@ -33,3 +39,5 @@ export default interface CatBreed {
   temperament: string;
   vocalisation: number;
 }
+
+export type { CatBreed, Weight };
