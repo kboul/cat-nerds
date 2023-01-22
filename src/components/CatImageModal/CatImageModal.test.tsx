@@ -1,6 +1,8 @@
+import userEvent from "@testing-library/user-event";
 import {
   renderWithProviders,
   screen,
+  waitFor,
   waitForElementToBeRemoved
 } from "../../tests";
 import CatImageModal from "./CatImageModal";
@@ -29,4 +31,21 @@ test("favourite icon appears on the screen after image loading and it is not fil
 
   // eslint-disable-next-line testing-library/no-node-access
   expect(screen.getByLabelText("starIcon")).toBeInTheDocument();
+});
+
+test("clicking star icon makes the image favourite by making the star filled", async () => {
+  await userEvent.click(screen.getByLabelText("starIcon"));
+
+  // eslint-disable-next-line testing-library/await-async-utils
+  waitFor(() =>
+    expect(screen.getByLabelText("fiiledStarIcon")).toBeInTheDocument()
+  );
+});
+
+test("clicking on modal's x icon triggers modal close", async () => {
+  const xMarkIcon = await screen.findByLabelText("xMarkIcon");
+  xMarkIcon.onclick = jest.fn();
+
+  await userEvent.click(xMarkIcon);
+  expect(xMarkIcon.onclick).toHaveBeenCalledTimes(1);
 });
