@@ -1,7 +1,10 @@
 import { useId } from "react";
+import ReactStars from "react-stars";
 
 import { TableProps, TableValue } from "./models";
 import { capitalize, clickableText, getTitle, getValue, isUrl } from "./utils";
+
+const rating = [0, 1, 2, 3, 4, 5];
 
 export default function BreedTable({ data }: TableProps) {
   const id = useId();
@@ -29,7 +32,11 @@ export default function BreedTable({ data }: TableProps) {
                   className={`px-6 py-4 `}
                   onClick={handleTableValueClick(key, value)}
                   title={getTitle(value)}>
-                  {getValue(value)}
+                  {rating.includes(value) ? (
+                    <ReactStars count={5} edit size={24} value={value} />
+                  ) : (
+                    getValue(value)
+                  )}
                 </td>
               </tr>
             );
