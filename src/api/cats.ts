@@ -1,4 +1,4 @@
-import { CatBreed, CatImage } from "../models";
+import { Breed, Image } from "../models";
 import { Favourite } from "../models";
 import { catImageUrl, favouriteUrl, catImagesUrl, catBreedsUrl } from "./urls";
 
@@ -10,7 +10,7 @@ const headers = {
 const getCatImages = async (
   limit: number,
   catBreedId?: string
-): Promise<CatImage[]> => {
+): Promise<Image[]> => {
   let endpoint = `${catImagesUrl}?limit=${limit}`;
   endpoint = catBreedId ? `${endpoint}&breed_ids=${catBreedId}` : endpoint;
 
@@ -20,7 +20,7 @@ const getCatImages = async (
   }).then((res) => res.json());
 };
 
-const getCatImage = async (catImageId: string): Promise<CatImage> =>
+const getCatImage = async (catImageId: string): Promise<Image> =>
   fetch(`${catImageUrl}/${catImageId}`, {
     method: "GET",
     headers
@@ -49,13 +49,13 @@ const removeFavouriteCatImage = async (
     headers
   }).then((res) => res.json());
 
-const getCatBreeds = async (): Promise<CatBreed[]> =>
+const getCatBreeds = async (): Promise<Breed[]> =>
   fetch(catBreedsUrl, {
     method: "GET",
     headers
   }).then((res) => res.json());
 
-const getBreedDetails = async (breedId: string): Promise<CatBreed> =>
+const getBreedDetails = async (breedId: string): Promise<Breed> =>
   fetch(`${catBreedsUrl}/${breedId}`, {
     method: "GET",
     headers

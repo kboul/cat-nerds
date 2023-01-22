@@ -3,7 +3,7 @@ interface Weight {
   metric: string;
 }
 
-interface CatBreed {
+interface Breed {
   weight: Weight;
   adaptability: number;
   affection_level: number;
@@ -40,4 +40,4 @@ interface CatBreed {
   vocalisation: number;
 }
 
-export type { CatBreed, Weight };
+export type { Breed, Weight };
