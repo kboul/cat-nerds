@@ -7,7 +7,8 @@ import {
   favouriteCatImages,
   loadMoreCatImages,
   catBreedImages,
-  catBreeds
+  catBreeds,
+  aegeanBreed
 } from "./mockData";
 
 export const handlers = [
@@ -25,5 +26,10 @@ export const handlers = [
     const limit = req.url.searchParams.get("sub_id");
     return res(ctx.json(favouriteCatImages));
   }),
-  rest.get(catBreedsUrl, (_, res, ctx) => res(ctx.json(catBreeds)))
+  rest.get(catBreedsUrl, (_, res, ctx) => res(ctx.json(catBreeds))),
+  rest.get(catBreedsUrl, (req, res, ctx) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const breedId = req.url.searchParams.get("breedId");
+    return res(ctx.json(aegeanBreed));
+  })
 ];

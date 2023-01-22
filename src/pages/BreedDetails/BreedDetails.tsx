@@ -11,7 +11,7 @@ export default function BreedDetails() {
   const { breedId } = useParams();
 
   const {
-    isLoading,
+    isFetching,
     isError,
     data: breedDetails
   } = useQuery({
@@ -22,14 +22,14 @@ export default function BreedDetails() {
   });
 
   let content = null;
-  if (isLoading) content = <CenteredText text="Loading cat breed..." />;
+  if (isFetching) content = <CenteredText text="Loading breed details..." />;
 
   if (Object.keys(breedDetails).length > 0)
     content = <BreedTable data={breedDetails} />;
 
   if (isError)
     content = (
-      <CenteredText text="There was an error while fetching the cat breed." />
+      <CenteredText text="There was an error while fetching the breed details." />
     );
 
   return content;
