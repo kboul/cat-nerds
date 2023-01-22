@@ -55,7 +55,14 @@ const getCatBreeds = async (): Promise<CatBreed[]> =>
     headers
   }).then((res) => res.json());
 
+const getBreedDetails = async (breedId: string): Promise<CatBreed> =>
+  fetch(`${catBreedsUrl}/${breedId}`, {
+    method: "GET",
+    headers
+  }).then((res) => res.json());
+
 export {
+  getBreedDetails,
   getCatImages,
   getCatImage,
   getFavouriteCatImages,

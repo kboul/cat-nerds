@@ -25,7 +25,7 @@ export default function App() {
             <Route path=":catBreedId" element={<CatBreedModal />} />
           </Route>
           <Route path={routes.breedDetails.path}>
-            <Route path=":breedDetailsId" element={<BreedDetails />} />
+            <Route path=":breedId" element={<BreedDetails />} />
           </Route>
           <Route path={routes.favouriteCats.path} element={<FavouriteCats />} />
 
