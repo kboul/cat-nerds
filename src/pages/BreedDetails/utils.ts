@@ -11,7 +11,7 @@ const capitalize = (word: string) => {
 const getValue = (value: TableValue) => {
   if (typeof value === "object")
     return `imperial: ${value?.imperial}, metric: ${value?.metric}`;
-  if (value.length > 50) return value.substring(0, 50);
+  if (value.length > 50) return `${value.substring(0, 50)}...`;
   return value;
 };
 
