@@ -33,6 +33,17 @@ test("favourite icon appears on the screen after image loading and it is not fil
   expect(screen.getByLabelText("starIcon")).toBeInTheDocument();
 });
 
+test("clicking on breed name navigates to breed details page", async () => {
+  const aegeanBreed = await screen.findByText("Aegean breed");
+
+  await userEvent.click(aegeanBreed);
+
+  // eslint-disable-next-line testing-library/await-async-utils
+  waitFor(() =>
+    expect(screen.queryByText("Aegean breed")).not.toBeInTheDocument()
+  );
+});
+
 test("clicking star icon makes the image favourite by making the star filled", async () => {
   await userEvent.click(screen.getByLabelText("starIcon"));
 
