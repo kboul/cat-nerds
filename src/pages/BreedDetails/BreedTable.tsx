@@ -1,7 +1,7 @@
 import { useId } from "react";
-import ReactStars from "react-stars";
 
 import { TableProps, TableValue } from "./models";
+import Rating from "./Rating";
 import { capitalize, clickableText, getTitle, getValue, isUrl } from "./utils";
 
 const rating = [0, 1, 2, 3, 4, 5];
@@ -33,7 +33,7 @@ export default function BreedTable({ data }: TableProps) {
                   onClick={handleTableValueClick(key, value)}
                   title={getTitle(value)}>
                   {rating.includes(value) ? (
-                    <ReactStars count={5} edit size={24} value={value} />
+                    <Rating count={value} />
                   ) : (
                     getValue(value)
                   )}
