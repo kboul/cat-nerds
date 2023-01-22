@@ -11,7 +11,7 @@ import { queryClient } from "../../queryClient";
 import { queryKeys } from "../../constants";
 
 export default function CatImageModal() {
-  const { catImageId } = useParams();
+  const { imageId } = useParams();
   const navigate = useNavigate();
 
   const {
@@ -19,9 +19,9 @@ export default function CatImageModal() {
     isError,
     data: catImage
   } = useQuery({
-    queryKey: [queryKeys.catImage, catImageId],
-    queryFn: () => getCatImage(catImageId ?? ""),
-    enabled: !!catImageId,
+    queryKey: [queryKeys.catImage, imageId],
+    queryFn: () => getCatImage(imageId ?? ""),
+    enabled: !!imageId,
     staleTime: 60000 // 1min
   });
 
@@ -33,8 +33,8 @@ export default function CatImageModal() {
   });
 
   const handleIconClick = useCallback(() => {
-    if (catImageId) mutate(catImageId);
-  }, [mutate, catImageId]);
+    if (imageId) mutate(imageId);
+  }, [mutate, imageId]);
 
   const memoedBreeds = useMemo(() => catImage?.breeds, [catImage?.breeds]);
 

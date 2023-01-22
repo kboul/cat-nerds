@@ -7,7 +7,7 @@ import CatImageModal from "./CatImageModal";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useParams: () => ({ catImageId: "6sn" })
+  useParams: () => ({ imageId: "6sn" })
 }));
 
 // eslint-disable-next-line testing-library/no-render-in-setup

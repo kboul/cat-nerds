@@ -9,10 +9,10 @@ const headers = {
 
 const getCatImages = async (
   limit: number,
-  catBreedId?: string
+  breedId?: string
 ): Promise<Image[]> => {
   let endpoint = `${catImagesUrl}?limit=${limit}`;
-  endpoint = catBreedId ? `${endpoint}&breed_ids=${catBreedId}` : endpoint;
+  endpoint = breedId ? `${endpoint}&breed_ids=${breedId}` : endpoint;
 
   return fetch(endpoint, {
     method: "GET",
@@ -20,8 +20,8 @@ const getCatImages = async (
   }).then((res) => res.json());
 };
 
-const getCatImage = async (catImageId: string): Promise<Image> =>
-  fetch(`${catImageUrl}/${catImageId}`, {
+const getCatImage = async (imageId: string): Promise<Image> =>
+  fetch(`${catImageUrl}/${imageId}`, {
     method: "GET",
     headers
   }).then((res) => res.json());
