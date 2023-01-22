@@ -27,9 +27,6 @@ export const handlers = [
     return res(ctx.json(favouriteCatImages));
   }),
   rest.get(catBreedsUrl, (_, res, ctx) => res(ctx.json(catBreeds))),
-  rest.get(catBreedsUrl, (req, res, ctx) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const breedId = req.url.searchParams.get("breedId");
-    return res(ctx.json(aegeanBreed));
-  })
+  rest.get(`${catBreedsUrl}/aege`, (_, res, ctx) => res(ctx.json(aegeanBreed))),
+  rest.get(`${catBreedsUrl}/aegean`, (_, res, ctx) => res(ctx.json([])))
 ];

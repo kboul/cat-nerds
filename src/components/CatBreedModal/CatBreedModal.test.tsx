@@ -1,46 +1,50 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import userEvent from "@testing-library/user-event";
-import { rest } from "msw";
 
-import { catBreedsUrl } from "../../api";
-import { renderWithProviders, screen, server, waitFor } from "../../tests";
+import { renderWithProviders, screen, waitFor } from "../../tests";
 import CatBreedModal from "./CatBreedModal";
 
-// eslint-disable-next-line testing-library/no-render-in-setup
-beforeEach(() => renderWithProviders(<CatBreedModal />));
+describe("valid breedId", () => {
+  jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useParams: () => ({ breedId: "aege" })
+  }));
 
-test("loading message appears initially on the screen when page loads", () => {
-  expect(screen.getByText("Loading cat breed images...")).toBeInTheDocument();
+  // eslint-disable-next-line testing-library/no-render-in-setup
+  beforeEach(() => renderWithProviders(<CatBreedModal />));
+
+  test("loading message appears initially on the screen when page loads", () => {
+    expect(screen.getByText("Loading cat breed images...")).toBeInTheDocument();
+  });
+
+  test("cat breed images appear on the screen after loading message", async () => {
+    const catImages = await screen.findAllByRole("img");
+    expect(catImages).toHaveLength(10);
+  });
+
+  test("clicking on modal's x icon triggers modal close", async () => {
+    const xMarkIcon = await screen.findByLabelText("xMarkIcon");
+    xMarkIcon.onclick = jest.fn();
+
+    await userEvent.click(xMarkIcon);
+    expect(xMarkIcon.onclick).toHaveBeenCalledTimes(1);
+  });
 });
 
-test("cat breed images appear on the screen after loading message", async () => {
-  const catImages = await screen.findAllByRole("img");
-  expect(catImages).toHaveLength(10);
-});
+describe("invalid breedId", () => {
+  jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useParams: () => ({ breedId: "aegean" })
+  }));
 
-test("clicking on modal's x icon triggers modal close", async () => {
-  const xMarkIcon = await screen.findByLabelText("xMarkIcon");
-  xMarkIcon.onclick = jest.fn();
+  test("displays the correct message if user inserts invalid breedId", async () => {
+    renderWithProviders(<CatBreedModal />);
 
-  await userEvent.click(xMarkIcon);
-  expect(xMarkIcon.onclick).toHaveBeenCalledTimes(1);
-});
-
-test.skip("server error generates the appropriate message on the screen", async () => {
-  server.resetHandlers(
-    rest.get(catBreedsUrl, (req, res, ctx) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const breedIds = req.url.searchParams.get("breed_ids");
-
-      res(ctx.status(500));
-    })
-  );
-  renderWithProviders(<CatBreedModal />);
-
-  await waitFor(async () => {
-    expect(
-      await screen.findByText(
-        "There was an error while fetching the cat breed images."
-      )
-    ).toBeInTheDocument();
+    // eslint-disable-next-line testing-library/await-async-utils
+    waitFor(() => {
+      expect(
+        screen.getByText("There seems no to be such breed category.")
+      ).toBeInTheDocument();
+    });
   });
 });

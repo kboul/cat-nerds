@@ -12,11 +12,7 @@ export default function CatBreedModal() {
   const navigate = useNavigate();
   const { breedId } = useParams();
 
-  const {
-    isFetching,
-    isError,
-    data: catBreeds
-  } = useQuery({
+  const { isFetching, data: catBreeds } = useQuery({
     initialData: [],
     queryKey: [queryKeys.catBreeds, breedId],
     queryFn: () => getCatImages(10, breedId)
@@ -45,10 +41,8 @@ export default function CatBreedModal() {
     );
   }
 
-  if (isError)
-    content = (
-      <CenteredText text="There was an error while fetching the cat breed images." />
-    );
+  if (!isFetching && catBreeds.length === 0)
+    content = <CenteredText text="There seems no to be such breed category." />;
 
   return (
     <Modal
