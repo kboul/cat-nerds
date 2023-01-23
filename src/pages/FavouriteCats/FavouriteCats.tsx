@@ -5,6 +5,7 @@ import { CatImageCard, CenteredText } from "../../components";
 import { getFavouriteCatImages, removeFavouriteCatImage } from "../../api";
 import { queryClient } from "../../queryClient";
 import { queryKeys } from "../../constants";
+import { Favourite } from "../../models";
 
 export default function FavouriteCats() {
   const {
@@ -18,10 +19,11 @@ export default function FavouriteCats() {
   });
 
   const { mutate } = useMutation(removeFavouriteCatImage, {
-    onSuccess: () =>
-      queryClient.invalidateQueries({
-        queryKey: [queryKeys.favouriteCatImages]
-      })
+    onSuccess: (_, favouriteId) =>
+      queryClient.setQueryData<Favourite[] | undefined>(
+        [queryKeys.favouriteCatImages],
+        (oldData) => oldData?.filter((oldImage) => favouriteId !== oldImage.id)
+      )
   });
 
   const handleIconClick = useCallback(
