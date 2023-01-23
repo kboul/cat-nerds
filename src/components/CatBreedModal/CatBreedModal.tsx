@@ -42,7 +42,9 @@ export default function CatBreedModal() {
   }
 
   if (!isFetching && catBreeds.length === 0)
-    content = <CenteredText text="There seems no to be such breed category." />;
+    content = (
+      <CenteredText text="There does not seem to be such breed category." />
+    );
 
   return (
     <Modal

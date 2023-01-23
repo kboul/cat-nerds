@@ -1,8 +1,6 @@
 import userEvent from "@testing-library/user-event";
-import { rest } from "msw";
 
-import { catBreedsUrl } from "../../api";
-import { renderWithProviders, screen, server, waitFor } from "../../tests";
+import { renderWithProviders, screen } from "../../tests";
 import BreedDetails from "./BreedDetails";
 
 jest.mock("react-router-dom", () => ({
@@ -31,27 +29,5 @@ describe("loading & response success", () => {
     await userEvent.click(wikipediaUrlEl);
     expect(window.open).toHaveBeenCalledTimes(1);
     expect(window.open).toHaveBeenCalledWith(wikipediaUrl, "_blank");
-  });
-});
-
-describe("response failure", () => {
-  test.skip("server error generates the appropriate message on the screen", async () => {
-    server.resetHandlers(
-      rest.get(catBreedsUrl, (req, res, ctx) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const breedId = req.url.searchParams.get("breedId");
-        return res(ctx.status(500));
-      })
-    );
-    renderWithProviders(<BreedDetails />);
-
-    await waitFor(async () => {
-      expect(
-        await screen.findByText(
-          "There was an error while fetching the breed details.",
-          { exact: false }
-        )
-      ).toBeInTheDocument();
-    });
   });
 });

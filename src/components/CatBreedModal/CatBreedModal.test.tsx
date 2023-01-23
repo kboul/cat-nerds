@@ -43,7 +43,7 @@ describe("invalid breedId", () => {
     // eslint-disable-next-line testing-library/await-async-utils
     waitFor(() => {
       expect(
-        screen.getByText("There seems no to be such breed category.")
+        screen.getByText("There does not seem to be such breed category.")
       ).toBeInTheDocument();
     });
   });
