@@ -26,7 +26,7 @@ export default function BreedTable({ data }: TableProps) {
             const trClickableText = clickableText(key, value);
             return (
               <tr
-                className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 ${trClickableText}`}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                 key={`${key}-${id}`}>
                 <th
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -34,7 +34,7 @@ export default function BreedTable({ data }: TableProps) {
                   {capitalize(key)}
                 </th>
                 <td
-                  className={`px-6 py-4 `}
+                  className={`px-6 py-4 ${trClickableText}`}
                   onClick={handleTableValueClick(key, value)}
                   title={getTitle(value)}>
                   {dynamicNumberArray(6).includes(value) ? (
