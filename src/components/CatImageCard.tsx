@@ -2,13 +2,11 @@ import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/outline";
 import { StarIcon as FilledStaredIcon } from "@heroicons/react/24/solid";
-import { useQuery } from "@tanstack/react-query";
 
 import Image from "./Image";
 import { Breed } from "../models";
 import { routes } from "../routes";
-import { getFavouriteCatImages } from "../api";
-import { queryKeys } from "../constants";
+import { useFavouriteImagesQuery } from "../hooks";
 
 interface CatImageCardProps {
   breedId?: string;
@@ -35,9 +33,7 @@ export default memo(function CatImageCard({
 }: CatImageCardProps) {
   const navigate = useNavigate();
 
-  const { data: favouriteCatImages, isLoading } = useQuery({
-    queryKey: [queryKeys.favouriteCatImages],
-    queryFn: getFavouriteCatImages,
+  const { data: favouriteCatImages, isLoading } = useFavouriteImagesQuery({
     staleTime: 60000
   });
 

@@ -1,27 +1,26 @@
 import { useCallback } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import { CatImageCard, CenteredText } from "../../components";
-import { getFavouriteCatImages, removeFavouriteCatImage } from "../../api";
+import { removeFavouriteCatImage } from "../../api";
 import { queryClient } from "../../queryClient";
+import { useFavouriteImagesQuery } from "../../hooks";
 import { queryKeys } from "../../constants";
+import { Favourite } from "../../models";
 
 export default function FavouriteCats() {
   const {
     data: favouriteCatImages,
     isFetching,
     isError
-  } = useQuery({
-    queryKey: [queryKeys.favouriteCatImages],
-    queryFn: getFavouriteCatImages,
-    initialData: []
-  });
+  } = useFavouriteImagesQuery({ initialData: [] });
 
   const { mutate } = useMutation(removeFavouriteCatImage, {
-    onSuccess: () =>
-      queryClient.invalidateQueries({
-        queryKey: [queryKeys.favouriteCatImages]
-      })
+    onSuccess: (_, favouriteId) =>
+      queryClient.setQueryData<Favourite[] | undefined>(
+        [queryKeys.favouriteCatImages],
+        (oldData) => oldData?.filter((oldImage) => favouriteId !== oldImage.id)
+      )
   });
 
   const handleIconClick = useCallback(
@@ -32,11 +31,11 @@ export default function FavouriteCats() {
   let content = null;
   if (isFetching) content = <CenteredText text="Loading favourite cats..." />;
 
-  if (favouriteCatImages.length > 0)
+  if (favouriteCatImages!.length > 0)
     content = (
       <div className="flex-container">
         <div className="flex-grid">
-          {favouriteCatImages.map(({ id, image }) => (
+          {favouriteCatImages?.map(({ id, image }) => (
             <CatImageCard
               clickableCard={false}
               id={image.id}
