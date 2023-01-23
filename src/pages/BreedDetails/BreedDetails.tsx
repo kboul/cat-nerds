@@ -4,20 +4,16 @@ import { useParams } from "react-router-dom";
 import BreedTable from "./BreedTable";
 import { CenteredText } from "../../components";
 import { getBreedDetails } from "../../api";
-import { CatBreed } from "../../models";
+import { Breed } from "../../models";
 import { queryKeys } from "../../constants";
 
 export default function BreedDetails() {
   const { breedId } = useParams();
 
-  const {
-    isFetching,
-    isError,
-    data: breedDetails
-  } = useQuery({
+  const { isFetching, data: breedDetails } = useQuery({
     queryKey: [queryKeys.breedDetails, breedId],
     queryFn: () => getBreedDetails(breedId ?? ""),
-    initialData: {} as CatBreed,
+    initialData: {} as Breed,
     enabled: !!breedId
   });
 
@@ -27,9 +23,9 @@ export default function BreedDetails() {
   if (Object.keys(breedDetails).length > 0)
     content = <BreedTable data={breedDetails} />;
 
-  if (isError)
+  if (!isFetching && Object.keys(breedDetails).length === 0)
     content = (
-      <CenteredText text="There was an error while fetching the breed details." />
+      <CenteredText text="There does not seem to be such breed category." />
     );
 
   return content;

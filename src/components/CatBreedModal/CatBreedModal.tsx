@@ -10,16 +10,12 @@ import { queryKeys } from "../../constants";
 
 export default function CatBreedModal() {
   const navigate = useNavigate();
-  const { catBreedId } = useParams();
+  const { breedId } = useParams();
 
-  const {
-    isFetching,
-    isError,
-    data: catBreeds
-  } = useQuery({
+  const { isFetching, data: catBreeds } = useQuery({
     initialData: [],
-    queryKey: [queryKeys.catBreeds, catBreedId],
-    queryFn: () => getCatImages(10, catBreedId)
+    queryKey: [queryKeys.catBreeds, breedId],
+    queryFn: () => getCatImages(10, breedId)
   });
 
   const breedName = catBreeds[0]?.breeds[0]?.name ?? "Cat";
@@ -33,7 +29,7 @@ export default function CatBreedModal() {
         <div className="flex-grid">
           {catBreeds.map(({ id, url }) => (
             <CatImageCard
-              breedId={catBreedId ?? ""}
+              breedId={breedId ?? ""}
               className="cursor-pointer"
               key={id}
               id={id}
@@ -45,9 +41,9 @@ export default function CatBreedModal() {
     );
   }
 
-  if (isError)
+  if (!isFetching && catBreeds.length === 0)
     content = (
-      <CenteredText text="There was an error while fetching the cat breed images." />
+      <CenteredText text="There does not seem to be such breed category." />
     );
 
   return (

@@ -27,7 +27,8 @@ describe("loading & response success", () => {
     const filledStarIcon = await screen.findByLabelText("filledStaredIcon");
 
     await userEvent.click(filledStarIcon);
-    await waitFor(() => {
+    // eslint-disable-next-line testing-library/await-async-utils
+    waitFor(() => {
       expect(
         screen.queryByLabelText("filledStaredIcon")
       ).not.toBeInTheDocument();

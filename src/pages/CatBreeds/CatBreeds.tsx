@@ -8,7 +8,7 @@ import { routes } from "../../routes";
 
 export default function CatBreeds() {
   const navigate = useNavigate();
-  const { catBreedId } = useParams();
+  const { breedId } = useParams();
 
   const {
     data: catBreeds,
@@ -33,7 +33,7 @@ export default function CatBreeds() {
           {catBreeds.map(({ id, name }) => (
             <li
               className={`px-6 py-2 sm:border-b sm:border-gray-200 md:border-none cursor-pointer ${
-                catBreedId === id ? "font-bold" : "font-normal"
+                breedId === id ? "font-bold" : "font-normal"
               }`}
               onClick={handleBreedClick(id)}
               key={id}>

@@ -1,7 +1,7 @@
-import { CatBreed, Weight } from "../../models";
+import { Breed, Weight } from "../../models";
 
 interface TableProps {
-  data: CatBreed;
+  data: Breed;
 }
 
 type TableValue = string | Weight;

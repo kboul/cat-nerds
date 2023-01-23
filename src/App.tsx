@@ -19,13 +19,14 @@ export default function App() {
       <Routes>
         <Route element={<Navbar />}>
           <Route path={routes.catImages.path} element={<CatImages />}>
-            <Route path=":catImageId" element={<CatImageModal />} />
+            <Route path=":imageId" element={<CatImageModal />} />
           </Route>
           <Route path={routes.catBreeds.path} element={<CatBreeds />}>
-            <Route path=":catBreedId" element={<CatBreedModal />} />
+            <Route path=":breedId" element={<CatBreedModal />} />
           </Route>
           <Route path={routes.breedDetails.path}>
             <Route path=":breedId" element={<BreedDetails />} />
+            <Route index element={<NoMatch />} />
           </Route>
           <Route path={routes.favouriteCats.path} element={<FavouriteCats />} />
 

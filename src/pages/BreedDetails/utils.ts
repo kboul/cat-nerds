@@ -11,7 +11,7 @@ const capitalize = (word: string) => {
 const getValue = (value: TableValue) => {
   if (typeof value === "object")
     return `imperial: ${value?.imperial}, metric: ${value?.metric}`;
-  if (value.length > 50) return value.substring(0, 50);
+  if (value.length > 50) return `${value.substring(0, 50)}...`;
   return value;
 };
 
@@ -26,4 +26,17 @@ const isUrl = (key: string, value: TableValue) => {
 const clickableText = (key: string, value: TableValue) =>
   isUrl(key, value) ? "hover:underline cursor-pointer" : "no-underline";
 
-export { capitalize, getValue, getTitle, clickableText, isUrl };
+const dynamicNumberArray = (count: number) => {
+  return Array(Number(count))
+    .fill(undefined)
+    .map((_, i) => i);
+};
+
+export {
+  capitalize,
+  dynamicNumberArray,
+  getValue,
+  getTitle,
+  clickableText,
+  isUrl
+};
