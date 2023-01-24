@@ -24,6 +24,10 @@ export const handlers = [
   rest.get(`${catImageUrl}/6sn`, (_, res, ctx) => res(ctx.json(catImage))),
   rest.get(favouriteUrl, (req, res, ctx) => {
     const subId = req.url.searchParams.get("sub_id");
+    return res.once(ctx.json([]));
+  }),
+  rest.get(favouriteUrl, (req, res, ctx) => {
+    const subId = req.url.searchParams.get("sub_id");
     return res(ctx.json(favouriteCatImages));
   }),
   rest.post(favouriteUrl, (req, res, ctx) => {

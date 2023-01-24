@@ -13,6 +13,12 @@ describe("loading & response success", () => {
     expect(screen.getByText("Loading favourite cats...")).toBeInTheDocument();
   });
 
+  test("user has not selected any favourite cat images", async () => {
+    expect(
+      await screen.findByText("You have not selected any favourite cat images.")
+    ).toBeInTheDocument();
+  });
+
   test("favourite cat images appear on the screen after loading message", async () => {
     const catImage = await screen.findByRole("img");
     expect(catImage).toBeInTheDocument();

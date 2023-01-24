@@ -49,6 +49,11 @@ export default function FavouriteCats() {
       </div>
     );
 
+  if (!isFetching && favouriteCatImages!.length === 0)
+    content = (
+      <CenteredText text="You have not selected any favourite cat images." />
+    );
+
   if (isError)
     content = (
       <CenteredText text="There was an error while fetching favourite cat images." />
