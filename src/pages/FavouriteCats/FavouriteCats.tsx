@@ -9,11 +9,8 @@ import { queryKeys } from "../../constants";
 import { Favourite } from "../../models";
 
 export default function FavouriteCats() {
-  const {
-    data: favouriteCatImages,
-    isFetching,
-    isError
-  } = useFavouriteImagesQuery({ initialData: [] });
+  const { data: favouriteCatImages, isPlaceholderData } =
+    useFavouriteImagesQuery();
 
   const { mutate } = useMutation(removeFavouriteCatImage, {
     onSuccess: (_, favouriteId) =>
@@ -29,9 +26,10 @@ export default function FavouriteCats() {
   );
 
   let content = null;
-  if (isFetching) content = <CenteredText text="Loading favourite cats..." />;
+  if (isPlaceholderData)
+    content = <CenteredText text="Loading favourite cats..." />;
 
-  if (favouriteCatImages!.length > 0)
+  if (favouriteCatImages && favouriteCatImages.length > 0 && !isPlaceholderData)
     content = (
       <div className="flex-container">
         <div className="flex-grid">
@@ -49,14 +47,14 @@ export default function FavouriteCats() {
       </div>
     );
 
-  if (!isFetching && favouriteCatImages!.length === 0)
-    content = (
-      <CenteredText text="You have not selected any favourite cat images." />
-    );
-
-  if (isError)
+  if (!favouriteCatImages && !isPlaceholderData)
     content = (
       <CenteredText text="There was an error while fetching favourite cat images." />
+    );
+
+  if (!isPlaceholderData && favouriteCatImages?.length === 0)
+    content = (
+      <CenteredText text="You have not selected any favourite cat images." />
     );
 
   return content;

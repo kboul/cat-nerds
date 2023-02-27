@@ -33,9 +33,7 @@ export default memo(function CatImageCard({
 }: CatImageCardProps) {
   const navigate = useNavigate();
 
-  const { data: favouriteCatImages, isLoading } = useFavouriteImagesQuery({
-    staleTime: 60000
-  });
+  const { data: favouriteCatImages } = useFavouriteImagesQuery();
 
   const isImageFavourite = favouriteCatImages?.find(
     ({ image_id: imageId }) => imageId === id
@@ -86,18 +84,14 @@ export default memo(function CatImageCard({
               )}
             </div>
 
-            {isLoading ? (
-              "Loading..."
-            ) : (
-              <FavouriteIcon
-                aria-label={isImageFavourite ? "filledStaredIcon" : "starIcon"}
-                className={`h-6 w-6 ${
-                  (!isImageFavourite || !clickableCard) && "cursor-pointer"
-                }`}
-                onClick={handleIconClick}
-                title={favouriteIconTitle}
-              />
-            )}
+            <FavouriteIcon
+              aria-label={isImageFavourite ? "filledStaredIcon" : "starIcon"}
+              className={`h-6 w-6 ${
+                (!isImageFavourite || !clickableCard) && "cursor-pointer"
+              }`}
+              onClick={handleIconClick}
+              title={favouriteIconTitle}
+            />
           </div>
         )}
       </article>

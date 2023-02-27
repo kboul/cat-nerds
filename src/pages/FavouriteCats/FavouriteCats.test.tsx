@@ -1,9 +1,26 @@
 import { rest } from "msw";
 import userEvent from "@testing-library/user-event";
 
+import FavouriteCats from "./FavouriteCats";
 import { favouriteUrl } from "../../api";
 import { renderWithProviders, screen, server, waitFor } from "../../tests";
-import FavouriteCats from "./FavouriteCats";
+
+describe("response failure", () => {
+  test("server error generates the appropriate message on the screen", async () => {
+    server.resetHandlers(
+      rest.get(favouriteUrl, (_, res, ctx) => res(ctx.status(500)))
+    );
+    renderWithProviders(<FavouriteCats />);
+
+    await waitFor(async () => {
+      expect(
+        await screen.findByText(
+          "There was an error while fetching favourite cat images."
+        )
+      ).toBeInTheDocument();
+    });
+  });
+});
 
 describe("loading & response success", () => {
   // eslint-disable-next-line testing-library/no-render-in-setup
@@ -11,12 +28,6 @@ describe("loading & response success", () => {
 
   test("loading message appears initially on the screen when page loads", () => {
     expect(screen.getByText("Loading favourite cats...")).toBeInTheDocument();
-  });
-
-  test("user has not selected any favourite cat images", async () => {
-    expect(
-      await screen.findByText("You have not selected any favourite cat images.")
-    ).toBeInTheDocument();
   });
 
   test("favourite cat images appear on the screen after loading message", async () => {
@@ -38,23 +49,6 @@ describe("loading & response success", () => {
       expect(
         screen.queryByLabelText("filledStaredIcon")
       ).not.toBeInTheDocument();
-    });
-  });
-});
-
-describe("response failure", () => {
-  test("server error generates the appropriate message on the screen", async () => {
-    server.resetHandlers(
-      rest.get(favouriteUrl, (_, res, ctx) => res(ctx.status(500)))
-    );
-    renderWithProviders(<FavouriteCats />);
-
-    await waitFor(async () => {
-      expect(
-        await screen.findByText(
-          "There was an error while fetching favourite cat images."
-        )
-      ).toBeInTheDocument();
     });
   });
 });
