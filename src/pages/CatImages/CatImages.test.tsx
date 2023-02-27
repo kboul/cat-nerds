@@ -11,6 +11,23 @@ import {
 import { catImagesUrl } from "../../api";
 import CatImages from "./CatImages";
 
+describe("response failure", () => {
+  test("server error generates the appropriate message on the screen", async () => {
+    server.resetHandlers(
+      rest.get(catImagesUrl, (_, res, ctx) => res(ctx.status(500)))
+    );
+    renderWithProviders(<CatImages />);
+
+    await waitFor(async () => {
+      expect(
+        await screen.findByText(
+          "There was an error while fetching the cat images."
+        )
+      ).toBeInTheDocument();
+    });
+  });
+});
+
 describe("loading & response success", () => {
   // eslint-disable-next-line testing-library/no-render-in-setup
   beforeEach(() => renderWithProviders(<CatImages />));
@@ -33,23 +50,6 @@ describe("loading & response success", () => {
     // eslint-disable-next-line testing-library/await-async-utils
     waitFor(async () => {
       expect(await screen.findAllByRole("img")).toHaveLength(20);
-    });
-  });
-});
-
-describe("response failure", () => {
-  test("server error generates the appropriate message on the screen", async () => {
-    server.resetHandlers(
-      rest.get(catImagesUrl, (_, res, ctx) => res(ctx.status(500)))
-    );
-    renderWithProviders(<CatImages />);
-
-    await waitFor(async () => {
-      expect(
-        await screen.findByText(
-          "There was an error while fetching the cat images."
-        )
-      ).toBeInTheDocument();
     });
   });
 });
