@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import { CenteredText } from "../../components";
 import { getCatBreeds } from "../../api";
@@ -8,7 +8,6 @@ import { routes } from "../../routes";
 
 export default function CatBreeds() {
   const navigate = useNavigate();
-  const { breedId } = useParams();
 
   const {
     data: catBreeds,
@@ -32,9 +31,7 @@ export default function CatBreeds() {
         <ul className="bg-white rounded-lg border border-gray-200 text-gray-900 md:columns-4 sm:columns-1 sm:mb-10 md:mb-0">
           {catBreeds.map(({ id, name }) => (
             <li
-              className={`px-6 py-2 sm:border-b sm:border-gray-200 md:border-none cursor-pointer ${
-                breedId === id ? "font-bold" : "font-normal"
-              }`}
+              className={`px-6 py-2 sm:border-b sm:border-gray-200 md:border-none cursor-pointer hover:font-bold`}
               onClick={handleBreedClick(id)}
               key={id}>
               {name}
