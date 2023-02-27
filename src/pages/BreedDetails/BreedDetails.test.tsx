@@ -2,6 +2,7 @@ import userEvent from "@testing-library/user-event";
 
 import { renderWithProviders, screen } from "../../tests";
 import BreedDetails from "./BreedDetails";
+import { capitalize } from "./utils";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -30,4 +31,8 @@ describe("loading & response success", () => {
     expect(window.open).toHaveBeenCalledTimes(1);
     expect(window.open).toHaveBeenCalledWith(wikipediaUrl, "_blank");
   });
+});
+
+describe("capitalize with empty input", () => {
+  expect(capitalize("")).toEqual("");
 });
