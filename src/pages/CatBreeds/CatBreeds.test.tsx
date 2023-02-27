@@ -5,6 +5,23 @@ import { catBreedsUrl } from "../../api";
 import { renderWithProviders, server, waitFor, screen } from "../../tests";
 import CatBreeds from "./CatBreeds";
 
+describe("response failure", () => {
+  test("server error generates the appropriate message on the screen", async () => {
+    server.resetHandlers(
+      rest.get(catBreedsUrl, (_, res, ctx) => res(ctx.status(500)))
+    );
+    renderWithProviders(<CatBreeds />);
+
+    await waitFor(async () => {
+      expect(
+        await screen.findByText(
+          "There was an error while fetching the cat breeds."
+        )
+      ).toBeInTheDocument();
+    });
+  });
+});
+
 describe("loading & response success", () => {
   // eslint-disable-next-line testing-library/no-render-in-setup
   beforeEach(() => renderWithProviders(<CatBreeds />));
@@ -24,22 +41,5 @@ describe("loading & response success", () => {
 
     await userEvent.click(aegeanBreed);
     expect(aegeanBreed.onclick).toHaveBeenCalledTimes(1);
-  });
-});
-
-describe("response failure", () => {
-  test("server error generates the appropriate message on the screen", async () => {
-    server.resetHandlers(
-      rest.get(catBreedsUrl, (_, res, ctx) => res(ctx.status(500)))
-    );
-    renderWithProviders(<CatBreeds />);
-
-    await waitFor(async () => {
-      expect(
-        await screen.findByText(
-          "There was an error while fetching the cat breeds."
-        )
-      ).toBeInTheDocument();
-    });
   });
 });
